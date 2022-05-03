@@ -1,0 +1,39 @@
+{% extends 'layout.html' %} {% load static %} {% block content %}
+<div class="row mt-5 mb-5">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-sm-flex justify-content-between align-items-center">
+          <h4 class="header-title mb-0">All Reviews</h4>
+        </div>
+        <div class="market-status-table mt-4">
+          <div>
+            <table
+              class="table table-striped table-responsive{-sm|-md} text-center table-hover"
+            >
+              <tr class="heading-td">
+                <th class="mv-icon">Review#</th>
+                <th class="coin-name">Review</th>
+                <th class="buy">Review_by</th>
+                <th class="sell">Product_id</th>
+                <th class="trends">Date of review</th>
+                <th class="stats-chart">Status</th>
+              </tr>
+              {% for item in reviews %}
+              <tr>
+                <td>{{ item.review_id }}</td>
+                <td>{{ item.review }}</td>
+                <td>{{ item.review_by|title }}</td>
+                <td>{{ item.product_id_id }}</td>
+                <td>{{ item.review_date }}</td>
+                <td>{{ item.review_status}}</td>
+              </tr>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
