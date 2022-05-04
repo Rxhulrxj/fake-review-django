@@ -1,164 +1,120 @@
-<!DOCTYPE html>
-{% load static %}
+<!doctype html>
+{% load static %} 
 <html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Admin Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="shortcut icon"
-      type="image/png"
-      href="{% static 'assets/images/icon/favicon.ico' %}"
-    />
-    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" />
-    <link
-      rel="stylesheet"
-      href="{% static 'assets/css/font-awesome.min.css' %}"
-    />
-    <link rel="stylesheet" href="{% static 'assets/css/themify-icons.css' %}" />
-    <link rel="stylesheet" href="{% static 'assets/css/metisMenu.css' %}" />
-    <link
-      rel="stylesheet"
-      href="{% static 'assets/css/owl.carousel.min.css' %}"
-    />
-    <link rel="stylesheet" href="{% static 'assets/css/slicknav.min.css' %}" />
-    <!-- amchart css -->
-    <link
-      rel="stylesheet"
-      href="https://www.amcharts.com/lib/3/plugins/export/export.css"
-      type="text/css"
-      media="all"
-    />
-    <!-- others css -->
-    <link rel="stylesheet" href="{% static 'assets/css/typography.css' %}" />
-    <link rel="stylesheet" href="{% static 'assets/css/default-css.css' %}" />
-    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}" />
-    <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}" />
-    <!-- modernizr css -->
-    <script src="{% static 'assets/js/vendor/modernizr-2.8.3.min.js' %}"></script>
-  </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <body>
-    <div id="preloader">
-      <div class="loader"></div>
-    </div>
-    <!-- preloader area end -->
-    <!-- page container area start -->
-    <div class="page-container">
-      <!-- sidebar menu area start -->
-      <div class="sidebar-menu">
-        <div class="sidebar-header">
-          <div class="logo">
-            <a href="{% url 'home' %}"
-              ><img src="{% static 'images/logo3.png' %}" alt="logo"
-            /></a>
-          </div>
-        </div>
-        <div class="main-menu">
-          <div class="menu-inner">
-            <nav>
-              <ul class="metismenu" id="menu">
-                <li>
-                  <a href="{% url 'admindashboard' %}" aria-expanded="true"
-                    ><i class="ti-palette"></i><span>All Reviews</span></a
-                  >
-                </li>
-                <li>
-                  <a href="{% url 'publishedreview' %}" aria-expanded="true"
-                    ><i class="ti-palette"></i><span>Published Reviews</span></a
-                  >
-                </li>
-                <li>
-                  <a href="{% url 'underreview' %}" aria-expanded="true"
-                    ><i class="ti-palette"></i><span>Under Reviews</span></a
-                  >
-                </li>
-                <li>
-                  <a href="{% url 'rejectedreview' %}" aria-expanded="true"
-                    ><i class="ti-palette"></i><span>Rejected Reviews</span></a
-                  >
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </div>
-      <!-- sidebar menu area end -->
-      <!-- main content area start -->
-      <div class="main-content">
-        <!-- header area start -->
-        <div class="header-area">
-          <div class="row align-items-center">
-            <!-- nav and search button -->
+    <link rel="apple-touch-icon" href="apple-icon.png">
+    <link rel="shortcut icon" href="favicon.ico">
 
-            <!-- profile info & task notification -->
-            <div class="col-md-6 col-sm-4 clearfix"></div>
-          </div>
-        </div>
-        <!-- header area end -->
-        <!-- page title area start -->
-        <div class="page-title-area">
-          <div class="row align-items-center">
-            <div class="col-sm-6">
-              <div class="breadcrumbs-area clearfix">
-                <h4 class="page-title pull-left">Dashboard</h4>
-                <ul class="breadcrumbs pull-left">
-                  <li><a href="{% url 'home'%}">Home</a></li>
-                  <li><span>Dashboard</span></li>
+
+    <link rel="stylesheet" href="{% static 'dashboard/vendors/bootstrap/dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/vendors/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/vendors/themify-icons/css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/vendors/flag-icon-css/css/flag-icon.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/vendors/selectFX/css/cs-skin-elastic.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'dashboard/assets/css/style.css' %}">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <aside id="left-panel" class="left-panel">
+        <nav class="navbar navbar-expand-sm navbar-default">
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a href="index.html"><img src="{% static 'images/logo3.png' %}" alt="#" /></a>
+            </div>
+
+            <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="{% url 'admindashboard' %}"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                    </li>
+                    <h3 class="menu-title">Reviews</h3><!-- /.menu-title -->
+                    <li class="menu-item-has-children dropdown">
+                        <a href="{% url 'publishedreview' %}" class="dropdown-toggle"> <i class="menu-icon fa fa-laptop"></i>Publised Reviews</a>
+                    </li>
+                    <li class="menu-item-has-children active dropdown">
+                        <a href="{% url 'underreview' %}" class="dropdown-toggle" > <i class="menu-icon fa fa-table"></i>Under Reviews</a>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="{% url 'rejectedreview' %}" class="dropdown-toggle"> <i class="menu-icon fa fa-th"></i>Rejected Reviews</a>
+                    </li>
                 </ul>
-              </div>
             </div>
-            <div class="col-sm-6 clearfix">
-              <div class="user-profile pull-right">
-                <img
-                  class="avatar user-thumb"
-                  src="{% static 'assets/images/author/avatar.png' %}"
-                  alt="avatar"
-                />
-                <h4 class="user-name dropdown-toggle" data-toggle="dropdown">
-                  Admin<i class="fa fa-angle-down"></i>
-                </h4>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
+        </nav>
+    </aside>
+    <div id="right-panel" class="right-panel">
+        <header id="header" class="header">
+            <div class="header-menu">
+                <div class="col-sm-7">
+                    <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
+                    <div class="header-left">
+                        <button class="search-trigger"><i class="fa fa-search"></i></button>
+                        <div class="form-inline">
+                            <form class="search-form">
+                                <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
+                                <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
+                            </form>
+                        </div>
+                        <div class="dropdown for-notification">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-bell"></i>
+                                <span class="count bg-danger">5</span>
+                            </button>
+                        </div>
+                        <div class="dropdown for-message">
+                            <button class="btn btn-secondary dropdown-toggle" type="button"
+                                id="message"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="ti-email"></i>
+                                <span class="count bg-primary">9</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-              </div>
+                <div class="col-sm-5">
+                    <div class="user-area dropdown float-right">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="user-avatar rounded-circle" src="{% static 'dashboard/assets/avatar.jpg' %}" alt="User Avatar">
+                        </a>
+                        <div class="user-menu dropdown-menu">
+                            <a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-power-off"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <!-- page title area end -->
-        <div class="main-content-inner">
-          <!-- sales report area start -->
-          <div class="sales-report-area mt-5 mb-5">
-            <div class="row"></div>
-          </div>
-          {% block content %} {% endblock %}
-        </div>
-      </div>
-      <footer>
-        <div class="footer-area">
-          <p>© Copyright 2022. All right reserved</p>
-        </div>
-      </footer>
-      <!-- footer area end-->
+        </header>
+        {% block content %} {% endblock %}
     </div>
-    <!-- page container area end -->
+    <script src="{% static 'dashboard/vendors/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'dashboard/vendors/popper.js/dist/umd/popper.min.js' %}"></script>
+    <script src="{% static 'dashboard/vendors/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'dashboard/assets/js/main.js' %}"></script>
 
-    <!-- jquery latest version -->
-    <script src="{% static 'assets/js/vendor/jquery-2.2.4.min.js' %}"></script>
-    <!-- bootstrap 4 js -->
-    <script src="{% static 'assets/js/popper.min.js' %}"></script>
-    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
-    <script src="{% static 'assets/js/metisMenu.min.js' %}"></script>
-    <script src="{% static 'assets/js/jquery.slimscroll.min.js' %}"></script>
-    <script src="{% static 'assets/js/jquery.slicknav.min.js' %}"></script>
-    <!-- all line chart activation -->
-    <script src="{% static 'assets/js/line-chart.js' %}"></script>
-    <!-- all pie chart -->
-    <script src="{% static 'assets/js/pie-chart.js' %}"></script>
-    <!-- others plugins -->
-    <script src="{% static 'assets/js/plugins.js' %}"></script>
-    <script src="{% static 'assets/js/scripts.js' %}"></script>
-  </body>
+
+    <script src="{% static 'dashboard/vendors/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'dashboard/vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'dashboard/vendors/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'dashboard/vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'dashboard/vendors/jszip/dist/jszip.min.js' %}"></script>
+    <script src="{% static 'dashboard/vendors/pdfmake/build/pdfmake.min.js' %}"></script>
+    <script src="{% static 'dashboard/vendors/pdfmake/build/vfs_fonts.js' %}"></script>
+    <script src="{% static 'dashboard/vendors/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'dashboard/vendors/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+    <script src="{% static 'dashboard/vendors/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+    <script src="{% static 'dashboard/assets/js/init-scripts/data-table/datatables-init.js' %}"></script>
+
+
+</body>
+
 </html>

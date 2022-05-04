@@ -22,6 +22,7 @@ class Review(models.Model):
     product_id = models.ForeignKey(Products, on_delete=models.CASCADE)
     text_percentage = models.IntegerField()
     review_status = models.CharField(max_length=50,choices=status)
+    review_pred= models.IntegerField()
     class Meta:
         verbose_name_plural = "Reviews"
 

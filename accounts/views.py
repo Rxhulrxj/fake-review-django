@@ -6,6 +6,7 @@ from .models import Products,Review,Product_Purchase
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
 import datetime
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import nltk
@@ -38,6 +39,7 @@ def loginpage(request):
             return HttpResponseRedirect('/login')
 
     return render(request,'login.html')
+@login_required(login_url='login')
 def productslist(request):
     products = Products.objects.all()
     user = request.session['session_user']
@@ -58,26 +60,12 @@ def underreview(request):
         review = Review.objects.get(review_id=review_id)
         review.review_status = review_status
         review.save()
-
     reviews = Review.objects.all()
+    reviewdata = []
     for item in reviews:
-        if item.review_status == 'under_review':
-            comment = item.review
-            model=pickle.load(open('model.pkl','rb'))
-            df = pd.read_csv('deceptive-opinion.csv')
-            df1 = df[['deceptive', 'text']]
-            df1.loc[df1['deceptive'] == 'deceptive', 'deceptive'] = 0
-            df1.loc[df1['deceptive'] == 'truthful', 'deceptive'] = 1
-            X = df1['text']
-            Y = np.asarray(df1['deceptive'], dtype = int)
-            X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.3,random_state=109)
-            cv = CountVectorizer()
-            x = cv.fit_transform(X_train)
-            y = cv.transform(X_test)
-            data = [comment]
-            vect = cv.transform(data).toarray()
-            pred = model.predict(vect)
-    return render(request,'underreview.html',{'reviews':reviews,'pred':pred})
+         if item.review_status == 'under_review':
+             reviewdata.append(item)
+    return render(request,'underreview.html',{'reviews':reviewdata})
 @staff_member_required()
 def rejectedreview(request):
     if request.method == "POST":
@@ -105,9 +93,9 @@ def writereviews(request,product_id):
         userid = User.objects.get(username=username).id
         comment = request.POST.get('comment')
         stop_words = stopwords.words('english')
-        comment = comment.lower()
+        comments = comment.lower()
         #convert to lowercase
-        text_final = ''.join(c for c in comment if not c.isdigit())
+        text_final = ''.join(c for c in comments if not c.isdigit())
         #remove stopwords    
         processed_doc1 = ' '.join([word for word in text_final.split() if word not in stop_words])
         sa = SentimentIntensityAnalyzer()
@@ -126,10 +114,25 @@ def writereviews(request,product_id):
         else:
             reviews.review_status = 'under_review'
             messages.success(request,"Review under review...")
+            modelfile="accounts\model\model.pkl"
+            csvfile="accounts\dataset\deceptive-opinion.csv"
+            model=pickle.load(open(modelfile,'rb'))
+            df = pd.read_csv(csvfile)
+            df1 = df[['deceptive', 'text']]
+            df1.loc[df1['deceptive'] == 'deceptive', 'deceptive'] = 0
+            df1.loc[df1['deceptive'] == 'truthful', 'deceptive'] = 1
+            X = df1['text']
+            Y = np.asarray(df1['deceptive'], dtype = int)
+            X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.3,random_state=109)
+            cv = CountVectorizer()
+            x = cv.fit_transform(X_train)
+            y = cv.transform(X_test)
+            data = [comment]
+            vect = cv.transform(data).toarray()
+            pred = model.predict(vect)
+            reviews.review_pred = pred
         reviews.save()
         status = 'view'
-        
-
     else:
         username = request.session['session_user']
         userid = User.objects.get(username = username).id
