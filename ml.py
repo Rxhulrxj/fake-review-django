@@ -6,7 +6,6 @@ import pandas as pd
 import sklearn as sk
 import pickle
 from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.naive_bayes import MultinomialNB, GaussianNB
 from sklearn.model_selection import train_test_split
 def fake_analysis(text):
     nltk.download('stopwords')

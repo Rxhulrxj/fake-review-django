@@ -33,7 +33,7 @@
                     <td>{{ item.review_date }}</td>
                     <td>{{ item.review_status}}</td>
                     <td>
-                      <form method="post" action="" id="{{ item.review_id }}" class="form-group">
+                      <form method="post" action="" id="{{ item.review_id }}" class="form-group" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="hidden" name="review_id" value="{{ item.review_id }}" />
                         <select name="status" id="status" class="form-select">

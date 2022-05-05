@@ -63,8 +63,8 @@
         {% for item in products %}
 		<div class="row">
 				<div class="col-md-5 col-sm-12 col-xs-12">
-					<div class="product-image">
-						<img src="{{ item.product_image.url }}" class="img-responsive">
+					<div class="product-image text-center">
+                        <img src="{{ item.product_image.url }}">
 						<span class="tag2 hot">
 							HOT
 						</span>
@@ -79,7 +79,7 @@
 
 						</h5>
 						<p class="price-container">
-							<span>{{ item.product_price }}</span>
+							<span>Price :₹{{ item.product_price }}</span>
 						</p>
 						<span class="tag1"></span>
 				</div>
