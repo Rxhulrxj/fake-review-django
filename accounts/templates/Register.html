@@ -1,5 +1,6 @@
 <!doctype html>
 {% load static %}
+{% load myfilters %}
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -31,33 +32,32 @@
           <div class="col-md-12">
             <div class="form-block mx-auto">
               <div class="text-center mb-5">
-              <h3><strong>Login</strong></h3>
-              <p>You don't have a Account? Then please <a class="white" href="{% url 'register' %}">Sign Up</a></p>
+              <h3><strong>Register</strong></h3>
+              <p>Already signed up? Then just <a class="white" href="{% url 'login' %}">Log In</a></p> 
               </div>
               <form action="#" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="form-group first">
                   <label for="username">Username</label>
-                  <input type="text" class="form-control" placeholder="username" name="username">
+                  {{form.username|addclass:'form-control-input'}}
                 </div>
                 <div class="form-group last mb-3">
                   <label for="password">Password</label>
-                  <input type="password" class="form-control" placeholder="Your Password" name="password">
+                  {{form.password1|addclass:'form-control-input'}}
                 </div>
-                
-                <div class="d-sm-flex mb-5 align-items-center">
-                  <label class="control control--checkbox mb-3 mb-sm-0"><span class="caption">Remember me</span>
-                    <input type="checkbox"/>
-                    <div class="control__indicator"></div>
-                  </label>
+                <div class="form-group last mb-3">
+                  <label for="password">Password</label>
+                  {{form.password2|addclass:'form-control-input'}}
                 </div>
 
-                <input type="submit" value="Login" class="btn btn-block btn-primary">
+                <button type="submit" value="Register" class="btn btn-block btn-primary">Register</button>
 
               </form>
-              {% for message in messages %}
-					    <p id="messages " class="bg-danger rounded my-3 p-1">{{message}}</p>
-				        {% endfor %}
+              {% for field, error in form.errors.items %}
+                        <div class="alert alert-danger my-3 p-1" role="alert">
+                        {{ error|striptags }}
+                        </div>
+                        {% endfor %}
             </div>
           </div>
         </div>
@@ -68,10 +68,21 @@
   </div>
     
     
-
+   
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
+    <script>
+    var form_fields = document.getElementsByTagName('input')
+		form_fields[1].placeholder='Username..';
+		form_fields[2].placeholder='Enter password...';
+		form_fields[3].placeholder='Re-enter Password...';
+
+
+		for (var field in form_fields){	
+			form_fields[field].className += ' form-control'
+		}
+    </script>
   </body>
 </html>

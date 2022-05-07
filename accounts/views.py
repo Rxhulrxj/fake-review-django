@@ -15,6 +15,7 @@ import numpy as np
 import pandas as pd
 import sklearn as sk
 import pickle
+from .forms import *
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB, GaussianNB
 from sklearn.model_selection import train_test_split
@@ -23,20 +24,33 @@ set(stopwords.words('english'))
 # Create your views here.
 def home(request):
     return render(request,'home.html')
+def registerPage(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+    else:
+        form = CreateUserForm()
+        if request.method == 'POST':
+            form = CreateUserForm(request.POST)
+            if form.is_valid():
+                    form.save()
+                    return redirect('login')  
+        context = {'form': form}
+        return render(request, 'Register.html', context)
 def loginpage(request):
     if request.method=="POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(username=username,password=password)
-        auth.login(request,user)
         if user:
+            auth.login(request,user)
             if user.is_superuser == 1 :
                 return HttpResponseRedirect('/dashboard')
             else:
                 request.session['session_user'] = username
                 return HttpResponseRedirect('/productslist')
         else:
-            return HttpResponseRedirect('/login')
+            messages.info(request, 'Username or password is incorrect')
+            return redirect('login')
 
     return render(request,'login.html')
 @login_required(login_url='login')
@@ -102,15 +116,18 @@ def writereviews(request,product_id):
         dd = sa.polarity_scores(text=processed_doc1)
         compound = round((1 + dd['compound'])/2, 2)
         compound = int(compound * 100)
+        print(compound)
         reviews = Review()
         reviews.review = comment
         reviews.text_percentage = compound
         reviews.product_id = Products.objects.get(product_id = product_id)
         reviews.review_by = User.objects.get(id = userid)
         reviews.review_date = datetime.date.today()
-        if compound >= 50:
+        if compound >= 60:
             reviews.review_status = 'published'
             messages.success(request,"🥳🥳🥳Your review has been published")
+            reviews.review_pred = 1
+            reviews.save()
         else:
             reviews.review_status = 'under_review'
             messages.success(request,"Review under review...")
@@ -131,7 +148,7 @@ def writereviews(request,product_id):
             vect = cv.transform(data).toarray()
             pred = model.predict(vect)
             reviews.review_pred = pred
-        reviews.save()
+            reviews.save()
         status = 'view'
     else:
         username = request.session['session_user']
