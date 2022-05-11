@@ -11,7 +11,8 @@ urlpatterns = [
     path('dashboard/underreview',views.underreview,name="underreview"),
     path('dashboard/rejectedreview',views.rejectedreview,name="rejectedreview"),
     path('/products/<product_id>',views.purchaseproduct,name="buy"),
-    path('reviews/<product_id>',views.writereviews,name="reviews"),
-    path(r'^reviews/<int:product_id>/<str:status>$',views.viewreviews,name="viewreviews"),
+    path('/product/<product_id>',views.productpage,name="productpage"),
+    # path('reviews/<product_id>',views.writereviews,name="reviews"),
+    # path(r'^reviews/<int:product_id>/<str:status>$',views.viewreviews,name="viewreviews"),
     path('logout',views.logout,name='logout')
 ]
