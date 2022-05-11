@@ -168,6 +168,7 @@
                                          <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle">
                                        </a>
                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                         <a class="dropdown-item" href="{% url 'productslist' %}">Products</a>
                                          <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
                                        </div>
                                      </li>   
@@ -299,11 +300,6 @@
                                        <div class="tab-pane fade" id="nav-tab-paypal">
                                           <form role="form">
                                              <div class="form-group">
-                                                <p>
-                                                   Do you Wish to make this order Cash on Delivery?<br>
-                                                   <input type="radio" value="Yes" name="codoption" required> Yes
-                                                   <input type="radio" value="No" name="codoption" required> No
-                                                </p>
                                              </div>
                                              <div class="col-lg-12">
                                                 <div class="form-group">
