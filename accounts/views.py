@@ -19,8 +19,8 @@ from .forms import *
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB, GaussianNB
 from sklearn.model_selection import train_test_split
-nltk.download('stopwords')
-set(stopwords.words('english'))
+# nltk.download('stopwords')
+# set(stopwords.words('english'))
 # Create your views here.
 def home(request):
     return render(request,'home.html')
@@ -61,6 +61,7 @@ def productslist(request):
 @login_required(login_url='login')
 def productpage(request,product_id):
     status=''
+    pred = ''
     username = request.session['session_user']
     userid = User.objects.get(username = username).id
     productid = product_id
@@ -80,31 +81,33 @@ def productpage(request,product_id):
             reviews.product_id = Products.objects.get(product_id = product_id)
             reviews.review_by = User.objects.get(id = userid)
             reviews.review_date = datetime.date.today()
-            modelfile="accounts\model\model.pkl"
-            csvfile="accounts\dataset\deceptive-opinion.csv"
-            model=pickle.load(open(modelfile,'rb'))
-            df = pd.read_csv(csvfile)
-            df1 = df[['deceptive', 'text']]
-            df1.loc[df1['deceptive'] == 'deceptive', 'deceptive'] = 0
-            df1.loc[df1['deceptive'] == 'truthful', 'deceptive'] = 1
-            X = df1['text']
-            Y = np.asarray(df1['deceptive'], dtype = int)
-            X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.3,random_state=109)
-            cv = CountVectorizer()
-            x = cv.fit_transform(X_train)
-            y = cv.transform(X_test)
-            data = [comment]
-            vect = cv.transform(data).toarray()
-            pred = model.predict(vect)
-            if pred == 1:
-                reviews.review_status = 'published'
-                messages.success(request,"🥳🥳🥳Your review has been published")
-                reviews.review_pred = 1
-                reviews.save()
-            else:
-                reviews.review_status = 'under_review'
-                reviews.review_pred = 0
-                messages.success(request,"Your Review is under reviewing.Please Check after some other time.")
+            if comment !=None or comment != "":
+                modelfile="accounts\model\model.pkl"
+                csvfile="accounts\dataset\deceptive-opinion.csv"
+                model=pickle.load(open(modelfile,'rb'))
+                df = pd.read_csv(csvfile)
+                df1 = df[['deceptive', 'text']]
+                df1.loc[df1['deceptive'] == 'deceptive', 'deceptive'] = 0
+                df1.loc[df1['deceptive'] == 'truthful', 'deceptive'] = 1
+                X = df1['text']
+                Y = np.asarray(df1['deceptive'], dtype = int)
+                X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.3,random_state=109)
+                cv = CountVectorizer()
+                x = cv.fit_transform(X_train)
+                y = cv.transform(X_test)
+                data = [comment]
+                vect = cv.transform(data).toarray()
+                pred = model.predict(vect)
+                if pred == 1:
+                    reviews.review_status = 'published'
+                    messages.success(request,"🥳🥳🥳Your review has been published")
+                    reviews.review_pred = pred
+                    reviews.save()
+                elif pred == 0:
+                    reviews.review_status = 'under_review'
+                    messages.success(request,"Your Review is under reviewing.Please Check after some other time.")
+                    reviews.review_pred = pred
+                    reviews.save()
                 reviews.save()
     productdetail=Products.objects.filter(product_id=product_id)
     productreviews = Review.objects.filter(product_id=product_id)

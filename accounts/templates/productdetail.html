@@ -36,94 +36,97 @@
    <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-      <style>
+   <style>
+      .sm-text {
+         font-size: 10px;
+         letter-spacing: 1px;
+      }
 
-.sm-text {
-	font-size: 10px;
-	letter-spacing: 1px;
-}
+      .sm-text-1 {
+         font-size: 14px;
+      }
 
-.sm-text-1 {
-	font-size: 14px;
-}
+      .green-tab {
+         background-color: #00C853;
+         color: #fff;
+         border-radius: 5px;
+         padding: 5px 3px 5px 3px;
+      }
 
-.green-tab {
-	background-color: #00C853;
-	color: #fff;
-	border-radius: 5px;
-	padding: 5px 3px 5px 3px;
-}
+      .btn-red {
+         background-color: #E64A19;
+         color: #fff;
+         border-radius: 20px;
+         border: none;
+         outline: none;
+      }
 
-.btn-red {
-	background-color: #E64A19;
-	color: #fff;
-	border-radius: 20px;
-	border: none;
-	outline: none;
-}
+      .btn-red:hover {
+         background-color: #BF360C;
+      }
 
-.btn-red:hover {
-	background-color: #BF360C;
-}
+      .btn-red:focus {
+         -moz-box-shadow: none !important;
+         -webkit-box-shadow: none !important;
+         box-shadow: none !important;
+         outline-width: 0
+      }
 
-.btn-red:focus {
-    -moz-box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-    outline-width: 0
-}
+      .round-icon {
+         font-size: 40px;
+         padding-bottom: 10px;
+      }
 
-.round-icon {
-	font-size: 40px;
-	padding-bottom: 10px;
-}
+      /*Styling for dots*/
+      .fa-circle {
+         font-size: 10px;
+         color: #EEEEEF;
+      }
 
-/*Styling for dots*/
-.fa-circle {
-	font-size: 10px;
-	color: #EEEEEF;
-}
+      .green-dot {
+         color: #4CAF50;
+      }
 
-.green-dot {
-	color: #4CAF50;
-}
+      .red-dot {
+         color: #E64A19;
+      }
 
-.red-dot {
-	color: #E64A19;
-}
+      .yellow-dot {
+         color: #FFD54F;
+      }
 
-.yellow-dot {
-	color: #FFD54F;
-}
+      .grey-text {
+         color: #BDBDBD;
+      }
 
-.grey-text {
-	color: #BDBDBD;
-}
+      .green-text {
+         color: #4CAF50;
+      }
 
-.green-text {
-	color: #4CAF50;
-}
+      /*border for block*/
+      .block {
+         border-right: 1px solid #F5EEEE;
+         border-top: 1px solid #F5EEEE;
+         border-bottom: 1px solid #F5EEEE;
+      }
 
-/*border for block*/
-.block {
-	border-right: 1px solid #F5EEEE;
-	border-top: 1px solid #F5EEEE;
-	border-bottom: 1px solid #F5EEEE;
-}
+      .profile-pic img {
+         border-radius: 50%;
+      }
 
-.profile-pic img {
-	border-radius: 50%;
-}
+      .rating-dot {
+         letter-spacing: 5px;
+      }
 
-.rating-dot {
-	letter-spacing: 5px;
-}
+      .via {
+         border-radius: 20px;
+         height: 28px;
+      }
 
-.via {
-	border-radius: 20px;
-	height: 28px;
-}
-      </style>
+      .purchase {
+         display: none;
+      }
+   </style>
 </head>
 <!-- body -->
 
@@ -150,39 +153,46 @@
                </div>
                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
                   <nav class="navigation navbar navbar-expand-md navbar-dark ">
-                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-                     <span class="navbar-toggler-icon"></span>
+                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04"
+                        aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
                      </button>
                      <div class="collapse navbar-collapse" id="navbarsExample04">
                         <ul class="navbar-nav mr-auto">
                            <li class="nav-item d_none">
                               <nav class="navbar navbar-dark navbar-expand-sm">
-                                   <h3 class="navbar-brand">{{ user }}</h3>
-                                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-4" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                                   <span class="navbar-toggler-icon"></span>
+                                 <h3 class="navbar-brand">{{ user }}</h3>
+                                 <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                    data-target="#navbar-list-4" aria-controls="navbarNav" aria-expanded="false"
+                                    aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
                                  </button>
                                  <div class="collapse navbar-collapse" id="navbar-list-4">
-                                   <ul class="navbar-nav">
+                                    <ul class="navbar-nav">
                                        <li class="nav-item dropdown">
-                                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                         <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle">
-                                       </a>
-                                       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                         <a class="dropdown-item" href="{% url 'productslist' %}">Products</a>
-                                         <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
-                                       </div>
-                                     </li>   
-                                   </ul>
+                                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                                             role="button" data-toggle="dropdown" aria-haspopup="true"
+                                             aria-expanded="false">
+                                             <img
+                                                src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg"
+                                                width="40" height="40" class="rounded-circle">
+                                          </a>
+                                          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                             <a class="dropdown-item" href="{% url 'productslist' %}">Products</a>
+                                             <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
+                                          </div>
+                                       </li>
+                                    </ul>
                                  </div>
-                               </nav>
-                             </div>
-                           </li>
-                        </ul>
+                              </nav>
                      </div>
-                  </nav>
+                     </li>
+                     </ul>
                </div>
+               </nav>
             </div>
          </div>
+      </div>
       </div>
    </header>
    <!-- end header inner -->
@@ -194,7 +204,7 @@
             {% for message in messages %}
             <div class="alert alert-success">{{ message }}</div>
             {% endfor %}
-            
+
             <div class="col-md-7">
                <div class="text-center">
                   <figure><img src="{{product.product_image.url}}" alt="#" width="150" height="150" /></figure>
@@ -204,8 +214,9 @@
                <div>
                   <h2><strong>{{product.product_name}}</strong></h2>
                   <h3>₹{{product.product_price}}</h3>
-                  
-                  <button type="button" class="btn btn-primary col-sm-8" data-toggle="modal" data-target="#exampleModal">
+
+                  <button type="button" class="btn btn-primary col-sm-8" data-toggle="modal"
+                     data-target="#exampleModal">
                      Buy
                   </button>
                   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
@@ -241,14 +252,17 @@
                                              <div class="form-group">
                                                 <label for="username">Full name (on the card)</label>
                                                 <input type="text" class="form-control" name="username" placeholder=""
-                                                   required="">
+                                                   id="fullname" required onchange="purchasefn(this.value)"
+                                                   onkeypress="return allowOnlyLetters(event,this);">
                                              </div> <!-- form-group.// -->
 
                                              <div class="form-group">
                                                 <label for="cardNumber">Card number</label>
                                                 <div class="input-group">
                                                    <input type="number" class="form-control" name="cardNumber"
-                                                      placeholder="">
+                                                      placeholder="" id="cardnumber" onchange="purchasefn(this.value)"
+                                                      required maxlength="19"
+                                                      oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                                                    <div class="input-group-append">
                                                       <span class="input-group-text text-muted">
                                                          <i class="fab fa-cc-visa"></i>   <i class="fab fa-cc-amex"></i>
@@ -264,10 +278,14 @@
                                                    <div class="form-group">
                                                       <label><span class="hidden-xs">Expiration</span> </label>
                                                       <div class="input-group">
-                                                         <input type="number" class="form-control" placeholder="MM"
-                                                            name="">
-                                                         <input type="number" class="form-control" placeholder="YY"
-                                                            name="">
+                                                         <input type="text" class="form-control" placeholder="MM"
+                                                            name="" id="month" onchange="purchasefn(this.value)"
+                                                            maxlength="2"
+                                                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                                                         <input type="text" class="form-control" placeholder="YY"
+                                                            name="" id="year" onchange="purchasefn(this.value)"
+                                                            maxlength="2"
+                                                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                                                       </div>
                                                    </div>
                                                 </div>
@@ -276,7 +294,9 @@
                                                       <label data-toggle="tooltip" title=""
                                                          data-original-title="3 digits code on back side of the card">CVV
                                                          <i class="fa fa-question-circle"></i></label>
-                                                      <input type="number" class="form-control" required="">
+                                                      <input type="text" class="form-control" required id="cvvnumber"
+                                                         onchange="purchasefn(this.value)" maxlength="3"
+                                                         oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                                                    </div> <!-- form-group.// -->
                                                 </div>
                                                 <div class="col-lg-12">
@@ -284,18 +304,20 @@
                                                       <label data-toggle="tooltip" title=""
                                                          data-original-title="Billing Address to be shipped">Billing
                                                          Address<i class="fa fa-question-circle"></i></label>
-                                                      <textarea class="form-control" required=""></textarea>
+                                                      <textarea class="form-control" required id="billing"
+                                                         onchange="purchasefn(this.value)"></textarea>
                                                    </div> <!-- form-group.// -->
                                                 </div>
                                              </div> <!-- row.// -->
-                                             <form method="post" enctype="multipart/form-data">
-                                                {% csrf_token %}
-                                             <a href="{% url 'buy' product.product_id %}">
-                                                <button class="subscribe btn btn-primary btn-block mt-5" type="submit"> Confirm
-                                                </button>
-                                             </a>
                                           </form>
+                                          <form method="post" enctype="multipart/form-data">
+                                             {% csrf_token %}
+                                             <a href="{% url 'buy' product.product_id %}"
+                                                class="subscribe btn btn-primary btn-block mt-5 purchasebtn purchase"
+                                                id="purchase">Confirm</a>
+                                             <!--  -->
                                           </form>
+
                                        </div> <!-- tab-pane.// -->
                                        <div class="tab-pane fade" id="nav-tab-paypal">
                                           <form role="form">
@@ -306,14 +328,17 @@
                                                    <label data-toggle="tooltip" title=""
                                                       data-original-title="Billing Address to be shipped">Billing
                                                       Address<i class="fa fa-question-circle"></i></label>
-                                                   <textarea class="form-control" required=""></textarea>
+                                                   <textarea class="form-control" id="billingcod" required
+                                                      onchange="purchasecod(this.value)"></textarea>
                                                 </div> <!-- form-group.// -->
                                              </div>
-                                             <form method="post" enctype="multipart/form-data">
-                                                {% csrf_token %}
-                                             <a href="{% url 'buy' product.product_id %}" class="subscribe btn btn-primary btn-block mt-5"> Confirm
+                                          </form>
+                                          <form method="post" enctype="multipart/form-data">
+                                             {% csrf_token %}
+                                             <a href="{% url 'buy' product.product_id %}"
+                                                class="subscribe btn btn-primary btn-block mt-5 purchase"
+                                                id="purchasecod">Confirm
                                              </a>
-                                             </form>
                                           </form>
                                        </div>
 
@@ -330,13 +355,13 @@
                         <!--container end.//-->
                      </div>
                   </div>
-                  
+
                </div>
             </div>
          </div>
-         
+
       </div>
-      
+
    </div>
    <div class="container">
       <div class="row">
@@ -357,14 +382,15 @@
                      <h2>Write a Review</h2>
                      <div class="col-md-12">
                         <form action="" method="post">
-                            {% csrf_token %}
-                            <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>
-                            <div class="text-right">
-                                <input type="reset" class="btn btn-danger" value="Cancel">
-                                <button class="btn btn-success" type="submit">Submit</button>
-                            </div>
+                           {% csrf_token %}
+                           <textarea class="form-control animated" cols="50" id="new-review" name="comment"
+                              placeholder="Enter your review here..." rows="5"></textarea>
+                           <div class="text-right">
+                              <input type="reset" class="btn btn-danger" value="Cancel">
+                              <button class="btn btn-success" type="submit">Submit</button>
+                           </div>
                         </form>
-                    </div>
+                     </div>
                   </div>
                </div>
                {% endif %}
@@ -373,7 +399,9 @@
                {% if item.review_status == 'published' %}
                <div class="review p-5">
                   <div class="row d-flex">
-                     <div class="profile-pic"><img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="60px" height="60px"></div>
+                     <div class="profile-pic"><img
+                           src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg"
+                           width="60px" height="60px"></div>
                      <div class="d-flex flex-column pl-3">
                         <h4>{{ item.review_by }}</h4>
                         <p class="grey-text">{{ item.review_date }}</p>
@@ -408,6 +436,61 @@
    <script src="{% static 'assets1/js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
    <script src="{% static 'assets1/js/custom.js' %}"></script>
    <script>
+      function purchasefn() {
+
+         var fullname = document.getElementById("fullname").value;
+         var cardnumber = document.getElementById("cardnumber").value;
+         var month = document.getElementById('month').value;
+         var year = document.getElementById('year').value;
+         var cvvnumber = document.getElementById('cvvnumber').value;
+         var billing = document.getElementById('billing').value;
+         if (fullname.length == 0) {
+            var element = document.getElementById("purchase");
+            element.classList.add("purchase");
+         } else if (cardnumber.length == 0) {
+            var element = document.getElementById("purchase");
+            element.classList.add("purchase");
+         } else if (month.length == 0) {
+            var element = document.getElementById("purchase");
+            element.classList.add("purchase");
+         } else if (year.length == 0) {
+            var element = document.getElementById("purchase");
+            element.classList.add("purchase");
+         } else if (cvvnumber.length == 0) {
+            var element = document.getElementById("purchase");
+            element.classList.add("purchase");
+         } else if (billing.length == 0) {
+            var element = document.getElementById("purchase");
+            element.classList.add("purchase");
+         } else {
+            var element = document.getElementById("purchase");
+            element.classList.remove("purchase");
+         }
+      }
+      function purchasecod() {
+         var billingcod = document.getElementById('billingcod').value
+         if (billingcod.length == 0) {
+            var element = document.getElementById("purchasecod");
+            element.classList.add("purchase");
+         } else {
+            var element = document.getElementById("purchasecod");
+            element.classList.remove("purchase");
+         }
+      }
+      function allowOnlyLetters(e, t) {
+         if (window.event) {
+            var charCode = window.event.keyCode;
+         }
+         else if (e) {
+            var charCode = e.which;
+         }
+         else { return true; }
+         if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123))
+            return true;
+         else {
+            return false;
+         }
+      }      
    </script>
 </body>
 
